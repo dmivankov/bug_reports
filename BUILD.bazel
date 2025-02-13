@@ -1,3 +1,23 @@
+load("@rules_java//toolchains:default_java_toolchain.bzl", "default_java_toolchain", "DEFAULT_TOOLCHAIN_CONFIGURATION")
+
+default_java_toolchain(
+    name = "java-21-fixed-toolchain",
+    source_version = "21",
+    target_version = "21",
+    configuration = DEFAULT_TOOLCHAIN_CONFIGURATION,
+    java_runtime = "@rules_java//toolchains:remotejdk_21",
+    javabuilder = ":JavaBuilder_deploy_fixed.jar",
+)
+
+default_java_toolchain(
+    name = "java-21-buggy-toolchain",
+    source_version = "21",
+    target_version = "21",
+    configuration = DEFAULT_TOOLCHAIN_CONFIGURATION,
+    java_runtime = "@rules_java//toolchains:remotejdk_21",
+    javabuilder = ":JavaBuilder_deploy_buggy.jar",
+)
+
 platform(
     name = "remote",
     exec_properties = {

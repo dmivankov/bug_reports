@@ -1,1 +1,2 @@
 bazel_dep(name = "platforms", version = "0.0.11")
+bazel_dep(name = "rules_java", version = "8.9.0")

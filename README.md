@@ -1,3 +1,11 @@
+Building `JavaBuilder_deploy_*.jar` files from source
+```console
+# checkout bazel source code, then
+$ bazel build //src/java_tools/buildjar:JavaBuilder_deploy.jar
+...
+# copy bazel-bin/src/java_tools/buildjar/JavaBuilder_deploy.jar to appropriate location in this repo
+```
+
 Start local buildbarn remote instance
 
 ```console
@@ -39,6 +47,15 @@ java.nio.file.FileAlreadyExistsException: bazel-out/k8-fastbuild/bin/bazel-out/k
 	at com.google.devtools.build.buildjar.BazelJavaBuilder.build(BazelJavaBuilder.java:111)
 	at com.google.devtools.build.buildjar.BazelJavaBuilder.parseAndBuild(BazelJavaBuilder.java:91)
 	at com.google.devtools.build.buildjar.BazelJavaBuilder.main(BazelJavaBuilder.java:75)
+```
+
+Run bazel coverage using `fuse` worker with fix from https://github.com/bazelbuild/bazel/pull/25273
+```console
+$ bazel clean
+# --nohome_rc is to remove --disk_cache if you have it
+$ bazel --nohome_rc coverage --config=remote-fuse --config=fix //:javatest
+
+//:javatest                                                              PASSED in 0.7s
 ```
 
 Run bazel coverage using `hardlinking` worker

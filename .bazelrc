@@ -1,6 +1,9 @@
 common --repo_env=JAVA_HOME=../bazel_tools/jdk
 common --java_runtime_version=remotejdk_21 --java_language_version=21 --tool_java_runtime_version=remotejdk_21 --tool_java_language_version=21
 
+common:fix --extra_toolchains=//:java-21-fixed-toolchain_definition
+common:bug --extra_toolchains=//:java-21-buggy-toolchain_definition
+
 build:remote --remote_cache=grpc://localhost:8980 --remote_executor=grpc://localhost:8980 --extra_execution_platforms=//:remote
 
 build:remote-fuse --config=remote --remote_instance_name=fuse
