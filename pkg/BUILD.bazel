@@ -1,0 +1,24 @@
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_binary", "kt_jvm_library")
+
+genrule(
+	name = "gen",
+	outs = ["gen.txt"],
+	cmd = "echo content >$@",
+)
+
+sh_binary(
+	name = "sh-bin",
+	srcs = ["hello.sh"],
+	data = [
+		"@bazel_tools//tools/bash/runfiles",
+		"gen.txt",
+	],
+)
+
+kt_jvm_binary(
+	name = "kt-bin",
+	srcs = ["hello.kt"],
+	data = ["sh-bin"],
+	deps = ["@bazel_tools//tools/java/runfiles"],
+	main_class = "hello.HelloKt",
+)
