@@ -1,0 +1,8 @@
+{
+    "integrity": "sha256-QR2yavs0ksyDUbW1NJkxUir+LFTyZRttEncwoSVtD2A=",
+    "url": "https://github.com/bazelbuild/rules_kotlin/releases/download/v2.2.2/rules_kotlin-v2.2.2.tar.gz",
+    "patches": {
+        "module_dot_bazel_version.patch": "sha256-cuv4gW5ZjLC/8Yb6Y9IwqnI3Fsmy50wJ7HE84dJdnUM="
+    },
+    "patch_strip": 1
+}
