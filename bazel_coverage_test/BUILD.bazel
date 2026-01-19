@@ -1,0 +1,32 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library", "kt_jvm_test")
+
+java_library(
+    name = "java_lib",
+    srcs = ["java/com/example/coverage/SimpleJavaLib.java"],
+)
+
+java_test(
+    name = "java_test",
+    srcs = ["java/com/example/coverage/SimpleJavaTest.java"],
+    test_class = "com.example.coverage.SimpleJavaTest",
+    deps = [
+        ":java_lib",
+        "@junit4//:junit_junit",
+    ],
+)
+
+kt_jvm_library(
+    name = "kotlin_lib",
+    srcs = ["kotlin/com/example/coverage/SimpleKotlinLib.kt"],
+)
+
+kt_jvm_test(
+    name = "kotlin_test",
+    srcs = ["kotlin/com/example/coverage/SimpleKotlinTest.kt"],
+    test_class = "com.example.coverage.SimpleKotlinTest",
+    deps = [
+        ":kotlin_lib",
+        "@junit4//:junit_junit",
+    ],
+)
